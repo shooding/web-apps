@@ -119,16 +119,16 @@ class MainPage extends Component {
             isCustomization = true,
             isBranding = true;
 
-        if (!appOptions.isDisconnected && config?.customization) {
-            isCustomization = !!(config.customization && (config.customization.loaderName || config.customization.loaderLogo));
-            isBranding = appOptions.canBranding || appOptions.canBrandingExt;
+        // if (!appOptions.isDisconnected && config?.customization) {
+        //     isCustomization = !!(config.customization && (config.customization.loaderName || config.customization.loaderLogo));
+        //     isBranding = appOptions.canBranding || appOptions.canBrandingExt;
 
-            if (!Object.keys(config).length) {
-                isCustomization = !/&(?:logo)=/.test(window.location.search);
-            }
+        //     if (!Object.keys(config).length) {
+        //         isCustomization = !/&(?:logo)=/.test(window.location.search);
+        //     }
 
-            isHideLogo = isCustomization && isBranding; 
-        }
+        //     isHideLogo = isCustomization && isBranding; 
+        // }
 
         if ($$('.skl-container').length) {
             $$('.skl-container').remove();
