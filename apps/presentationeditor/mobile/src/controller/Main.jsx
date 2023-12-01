@@ -668,20 +668,20 @@ class MainController extends Component {
     }
 
     onServerVersion (buildVersion) {
-        if (this.changeServerVersion) return true;
-        const { t } = this.props;
-        const _t = t('Controller.Main', {returnObjects:true});
+        // if (this.changeServerVersion) return true;
+        // const { t } = this.props;
+        // const _t = t('Controller.Main', {returnObjects:true});
 
-        if (About.appVersion() !== buildVersion && !window.compareVersions) {
-            this.changeServerVersion = true;
-            f7.dialog.alert(
-                _t.errorServerVersion,
-                _t.titleServerVersion,
-                () => {
-                    setTimeout(() => {Common.Gateway.updateVersion()}, 0);
-                });
-            return true;
-        }
+        // if (About.appVersion() !== buildVersion && !window.compareVersions) {
+        //     this.changeServerVersion = true;
+        //     f7.dialog.alert(
+        //         _t.errorServerVersion,
+        //         _t.titleServerVersion,
+        //         () => {
+        //             setTimeout(() => {Common.Gateway.updateVersion()}, 0);
+        //         });
+        //     return true;
+        // }
         return false;
     }
 
