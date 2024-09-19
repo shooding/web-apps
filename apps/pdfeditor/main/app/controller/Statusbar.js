@@ -34,8 +34,7 @@
  *
  *  Statusbar controller
  *
- *  Created by Alexander Yuzhin on 1/15/14
- *  Copyright (c) 2018 Ascensio System SIA. All rights reserved.
+ *  Created on 1/15/14
  *
  */
 
@@ -117,7 +116,7 @@ define([
 
         onChangeCompactView: function (view, status) {
             this.statusbar.setVisible(!status);
-            Common.localStorage.setBool('de-hidden-status', status);
+            Common.localStorage.setBool('pdfe-hidden-status', status);
 
             if (view.$el.closest('.btn-slot').prop('id') === 'slot-btn-options') {
                 this.statusbar.fireEvent('view:hide', [this, status]);

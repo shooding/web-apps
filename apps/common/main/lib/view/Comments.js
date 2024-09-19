@@ -34,8 +34,7 @@
  *
  *  View
  *
- *  Created by Alexey Musinov on 16.01.14
- *  Copyright (c) 2018 Ascensio System SIA. All rights reserved.
+ *  Created on 16.01.14
  *
  */
 
@@ -164,12 +163,12 @@ define([
             autoScrollToEditButtons: function () {
                 var button = $('#id-comments-change'),  // TODO: add to cache
                     btnBounds = null,
-                    contentBounds = this.el.getBoundingClientRect(),
+                    contentBounds = Common.Utils.getBoundingClientRect(this.el),
                     moveY = 0,
                     padding = 7;
 
                 if (button.length) {
-                    btnBounds = button.get(0).getBoundingClientRect();
+                    btnBounds = Common.Utils.getBoundingClientRect(button.get(0));
                     if (btnBounds && contentBounds) {
                         moveY = contentBounds.bottom - (btnBounds.bottom + padding);
                         if (moveY < 0) {

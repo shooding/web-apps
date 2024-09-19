@@ -32,8 +32,7 @@
 /**
  *  SlicerSettings.js
  *
- *  Created by Julia Radzhabova on 5/26/20
- *  Copyright (c) 2020 Ascensio System SIA. All rights reserved.
+ *  Created on 5/26/20
  *
  */
 define([
@@ -696,7 +695,8 @@ define([
                     cls: 'combo-slicer-style',
                     dataHint: '1',
                     dataHintDirection: 'bottom',
-                    dataHintOffset: 'big'
+                    dataHintOffset: 'big',
+                    fillOnChangeVisibility: true
                 });
                 this.btnSlicerStyle.render($('#slicer-btn-style'));
                 this.btnSlicerStyle.openButton.menu.cmpEl.css({

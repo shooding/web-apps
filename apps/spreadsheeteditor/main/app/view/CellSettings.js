@@ -32,8 +32,7 @@
 /**
  *  CellSettings.js
  *
- *  Created by Julia Radzhabova on 6/08/18
- *  Copyright (c) 2018 Ascensio System SIA. All rights reserved.
+ *  Created on 6/08/18
  *
  */
 
@@ -336,6 +335,7 @@ define([
                 dataHint: '1',
                 dataHintDirection: 'bottom',
                 dataHintOffset: 'big',
+                fillOnChangeVisibility: true,
                 itemTemplate: _.template([
                     '<div class="style" id="<%= id %>">',
                     '<img src="data:image/gif;base64,R0lGODlhAQABAID/AMDAwAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" class="combo-pattern-item" ',

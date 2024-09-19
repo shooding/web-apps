@@ -32,8 +32,7 @@
 /**
  *  SignatureSettings.js
  *
- *  Created by Julia Radzhabova on 5/24/17
- *  Copyright (c) 2018 Ascensio System SIA. All rights reserved.
+ *  Created on 5/24/17
  *
  */
 
@@ -365,7 +364,7 @@ define([
                     text    : tipText,
                     showLink: showLink,
                     textLink: this.txtContinueEditing,
-                    placement: 'left-bottom'
+                    placement: Common.UI.isRTL() ? 'right-bottom' : 'left-bottom'
                 });
                 tip.on({
                     'dontshowclick': function() {
@@ -409,6 +408,7 @@ define([
                     viewMode: disable,
                     reviewMode: false,
                     fillFormMode: false,
+                    viewDocMode: false,
                     allowMerge: false,
                     allowSignature: true,
                     allowProtect: true,
@@ -424,7 +424,8 @@ define([
                     documentHolder: {clear: true, disable: true},
                     toolbar: true,
                     plugins: false,
-                    protect: false
+                    protect: false,
+                    header: {docmode: true}
                 }, 'signature');
             }
         },

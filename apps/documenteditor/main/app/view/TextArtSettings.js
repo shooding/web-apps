@@ -32,8 +32,7 @@
 /**
  *  TextArtSettings.js
  *
- *  Created by Julia Radzhabova on 7/10/15
- *  Copyright (c) 2018 Ascensio System SIA. All rights reserved.
+ *  Created on 7/10/15
  *
  */
 
@@ -1221,7 +1220,8 @@ define([
                 cls: 'combo-textart',
                 dataHint: '1',
                 dataHintDirection: 'bottom',
-                dataHintOffset: 'big'
+                dataHintOffset: 'big',
+                fillOnChangeVisibility: true
             });
             this.cmbTransform.render($('#textart-combo-transform'));
             this.cmbTransform.openButton.menu.cmpEl.css({
@@ -1257,7 +1257,8 @@ define([
                     cls: 'combo-textart',
                     dataHint: '1',
                     dataHintDirection: 'bottom',
-                    dataHintOffset: 'big'
+                    dataHintOffset: 'big',
+                    fillOnChangeVisibility: true
                 });
                 this.cmbTextArt.render($('#textart-combo-template'));
                 this.cmbTextArt.openButton.menu.cmpEl.css({

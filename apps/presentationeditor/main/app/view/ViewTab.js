@@ -32,8 +32,7 @@
 /**
  *  ViewTab.js
  *
- *  Created by Julia Svinareva on 07.12.2021
- *  Copyright (c) 2021 Ascensio System SIA. All rights reserved.
+ *  Created on 07.12.2021
  *
  */
 
@@ -47,6 +46,11 @@ define([
     PE.Views.ViewTab = Common.UI.BaseView.extend(_.extend((function(){
         var template =
             '<section class="panel" data-tab="view">' +
+                '<div class="group small">' +
+                    '<span class="btn-slot text x-huge" id="slot-btn-normal"></span>' +
+                    '<span class="btn-slot text x-huge" id="slot-btn-slide-master"></span>' +
+                '</div>' +
+                '<div class="separator long slide-master-separator"></div>' +
                 '<div class="group small">' +
                     '<div class="elset" style="display: flex;">' +
                         '<span class="btn-slot" id="slot-field-zoom" style="flex-grow: 1;"></span>' +
@@ -103,6 +107,12 @@ define([
 
             setEvents: function () {
                 var me = this;
+                me.btnNormal.on('toggle', _.bind(function(btn, state) {
+                    me.fireEvent('mode:normal', [state]);
+                }, me));
+                me.btnSlideMaster.on('toggle', _.bind(function(btn, state) {
+                    me.fireEvent('mode:master', [state]);
+                }, me));
                 me.btnFitToSlide && me.btnFitToSlide.on('click', function () {
                     me.fireEvent('zoom:toslide', [me.btnFitToSlide]);
                 });
@@ -183,6 +193,34 @@ define([
                 this.lockedControls = [];
 
                 var me = this;
+
+                this.btnNormal = new Common.UI.Button({
+                    cls: 'btn-toolbar x-huge icon-top',
+                    iconCls: 'toolbar__icon btn-normal',
+                    caption: this.textNormal,
+                    lock: [_set.disableOnStart],
+                    enableToggle: true,
+                    allowDepress: true,
+                    pressed: true,
+                    dataHint: '1',
+                    dataHintDirection: 'bottom',
+                    dataHintOffset: 'small'
+                });
+                this.lockedControls.push(this.btnNormal);
+
+                this.btnSlideMaster = new Common.UI.Button({
+                    cls: 'btn-toolbar x-huge icon-top',
+                    iconCls: 'toolbar__icon btn-slide-master',
+                    caption: this.textSlideMaster,
+                    lock: [_set.disableOnStart],
+                    enableToggle: true,
+                    allowDepress: true,
+                    pressed: false,
+                    dataHint: '1',
+                    dataHintDirection: 'bottom',
+                    dataHintOffset: 'small'
+                });
+                this.lockedControls.push(this.btnSlideMaster);
 
                 this.cmbZoom = new Common.UI.ComboBox({
                     cls: 'input-group-nr',
@@ -349,6 +387,8 @@ define([
                 this.$el = $(_.template(template)( {} ));
                 var $host = this.$el;
 
+                this.btnNormal.render($host.find('#slot-btn-normal'));
+                this.btnSlideMaster.render($host.find('#slot-btn-slide-master'));
                 this.cmbZoom.render($host.find('#slot-field-zoom'));
                 $host.find('#slot-lbl-zoom').text(this.textZoom);
                 this.btnFitToSlide.render($host.find('#slot-btn-fts'));
@@ -370,6 +410,8 @@ define([
                 (new Promise(function (accept, reject) {
                     accept();
                 })).then(function () {
+                    me.btnNormal.updateHint(me.tipNormal);
+                    me.btnSlideMaster.updateHint(me.tipSlideMaster);
                     me.btnFitToSlide.updateHint(me.tipFitToSlide);
                     me.btnFitToWidth.updateHint(me.tipFitToWidth);
                     me.btnInterfaceTheme.updateHint(me.tipInterfaceTheme);
@@ -432,9 +474,9 @@ define([
 
                     if (!config.isEdit) {
                         me.chRulers.hide();
-                    }
-                    if (!config.isEdit) {
                         me.btnGuides.$el.closest('.group').remove();
+                        me.btnSlideMaster.$el.closest('.group').remove();
+                        me.$el.find('.slide-master-separator').remove();
                     }
 
                     if (Common.UI.Themes.available()) {
@@ -531,8 +573,11 @@ define([
             textCm: 'cm',
             textCustom: 'Custom',
             textLeftMenu: 'Left panel',
-            textRightMenu: 'Right panel'
-
+            textRightMenu: 'Right panel',
+            textNormal: 'Normal',
+            textSlideMaster: 'Slide Master',
+            tipNormal: 'Normal',
+            tipSlideMaster: 'Slide master'
         }
     }()), PE.Views.ViewTab || {}));
 });

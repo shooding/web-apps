@@ -33,8 +33,7 @@
 /**
  *  DataTab.js
  *
- *  Created by Julia Radzhabova on 30.05.2019
- *  Copyright (c) 2019 Ascensio System SIA. All rights reserved.
+ *  Created on 30.05.2019
  *
  */
 
@@ -593,7 +592,8 @@ define([
                         case Asc.c_oAscExternalReferenceType.referenceData:
                             data = {
                                 referenceData: item.asc_getData(),
-                                path: item.asc_getPath()
+                                path: item.asc_getPath(),
+                                link: item.asc_getLink()
                             };
                             break;
                     }

@@ -32,8 +32,7 @@
 /**
  *  ChartSettings.js
  *
- *  Created by Julia Radzhabova on 4/11/14
- *  Copyright (c) 2018 Ascensio System SIA. All rights reserved.
+ *  Created on 4/11/14
  *
  */
 
@@ -680,6 +679,7 @@ define([
                     dataHint: '1',
                     dataHintDirection: 'bottom',
                     dataHintOffset: 'big',
+                    fillOnChangeVisibility: true,
                     delayRenderTips: true
                 });
                 this.cmbChartStyle.render($('#chart-combo-style'));

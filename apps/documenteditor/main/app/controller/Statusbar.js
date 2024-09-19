@@ -34,8 +34,7 @@
  *
  *  Statusbar controller
  *
- *  Created by Alexander Yuzhin on 1/15/14
- *  Copyright (c) 2018 Ascensio System SIA. All rights reserved.
+ *  Created on 1/15/14
  *
  */
 
@@ -304,7 +303,7 @@ define([
             var tip = new Common.UI.SynchronizeTip({
                 target  : me.btnTurnReview.$el,
                 text    : text,
-                placement: 'top-left',
+                placement: Common.UI.isRTL() ? 'top-right' : 'top-left',
                 showLink: !!storage
             });
             tip.on({

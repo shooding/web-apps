@@ -32,8 +32,7 @@
 /**
  *  ParagraphSettingsAdvanced.js
  *
- *  Created by Julia Radzhabova on 2/21/14
- *  Copyright (c) 2018 Ascensio System SIA. All rights reserved.
+ *  Created on 2/21/14
  *
  */
 
@@ -134,11 +133,11 @@ define([    'text!documenteditor/main/app/template/ParagraphSettingsAdvanced.tem
             });
 
             this._arrTabLeader = [
-                { value: Asc.c_oAscTabLeader.None,      displayValue: this.textNone },
-                { value: Asc.c_oAscTabLeader.Dot,       displayValue: '....................' },
-                { value: Asc.c_oAscTabLeader.Hyphen,    displayValue: '-----------------' },
-                { value: Asc.c_oAscTabLeader.MiddleDot, displayValue: '·················' },
-                { value: Asc.c_oAscTabLeader.Underscore,displayValue: '__________' }
+                { value: Asc.c_oAscTabLeader.None,      cls: '', displayValue: this.textNone },
+                { value: Asc.c_oAscTabLeader.Dot,       cls: 'font-sans-serif', displayValue: '....................' },
+                { value: Asc.c_oAscTabLeader.Hyphen,    cls: 'font-sans-serif', displayValue: '-----------------' },
+                { value: Asc.c_oAscTabLeader.MiddleDot, cls: 'font-sans-serif', displayValue: '·················' },
+                { value: Asc.c_oAscTabLeader.Underscore,cls: 'font-sans-serif', displayValue: '__________' }
             ];
             this._arrKeyTabLeader = [];
             this._arrTabLeader.forEach(function(item) {
@@ -606,13 +605,21 @@ define([    'text!documenteditor/main/app/template/ParagraphSettingsAdvanced.tem
             });
             this.cmbAlign.setValue(Asc.c_oAscTabType.Left);
 
-            this.cmbLeader = new Common.UI.ComboBox({
+            this.cmbLeader = new Common.UI.ComboBoxCustom({
                 el          : $('#paraadv-cmb-leader'),
                 style       : 'width: 108px;',
                 menuStyle   : 'min-width: 108px;',
                 editable    : false,
                 cls         : 'input-group-nr',
                 data        : this._arrTabLeader,
+                itemsTemplate: _.template([
+                    '<% _.each(items, function(item) { %>',
+                    '<li id="<%= item.id %>" data-value="<%- item.value %>" class="<%= item.cls %>"><a tabindex="-1" type="menuitem"><%= scope.getDisplayValue(item) %></a></li>',
+                    '<% }); %>',
+                ].join('')),
+                updateFormControl: function(record) {
+                    this._input && this._input.toggleClass('font-sans-serif', record.get('value')!==Asc.c_oAscTabLeader.None);
+                },
                 takeFocusOnClose: true
             });
             this.cmbLeader.setValue(Asc.c_oAscTabLeader.None);

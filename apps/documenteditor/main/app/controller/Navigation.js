@@ -166,6 +166,7 @@ define([
                 arr[0].set('isNotHeader', true);
                 arr[0].set('name', this.txtBeginning);
                 arr[0].set('tip', this.txtGotoBeginning);
+                arr[0].set('getTipFromName', false);
             }
 
             var me = this;
@@ -238,7 +239,7 @@ define([
                 menu.hide();
             }
 
-            var parentOffset = this.panelNavigation.$el.offset(),
+            var parentOffset = Common.Utils.getOffset(this.panelNavigation.$el),
                 top = e.clientY*Common.Utils.zoom();
             showPoint = [e.clientX*Common.Utils.zoom() + 5, top - parentOffset.top + 5];
 
@@ -376,6 +377,7 @@ define([
                     arr[0].set('isNotHeader', true);
                     arr[0].set('name', this.txtBeginning);
                     arr[0].set('tip', this.txtGotoBeginning);
+                    arr[0].set('getTipFromName', false);
                 }
                 this.getApplication().getCollection('Navigation').reset(arr);
                 if (this.panelNavigation && this.panelNavigation.viewNavigationList && this.panelNavigation.viewNavigationList.scroller)

@@ -34,8 +34,7 @@
  *
  *  DocumentHolder view
  *
- *  Created by Julia Radzhabova on 3/28/14
- *  Copyright (c) 2018 Ascensio System SIA. All rights reserved.
+ *  Created on 3/28/14
  *
  */
 
@@ -74,6 +73,11 @@ define([
             this.cmpEl = $(this.el);
 
             this.fireEvent('render:after', this);
+            return this;
+        },
+
+        setMode: function(m) {
+            this.mode = m;
             return this;
         },
 
@@ -698,6 +702,10 @@ define([
                 caption     : '--'
             });
 
+            me.pmiCellSeparator =  new Common.UI.MenuItem({
+                caption     : '--'
+            });
+
             me.pmiAddNamedRange = new Common.UI.MenuItem({
                 id          : 'id-context-menu-item-add-named-range',
                 caption     : me.txtAddNamedRange
@@ -821,6 +829,10 @@ define([
                 })
             });
 
+            me.pmiCellFormat = new Common.UI.MenuItem({
+                caption     : me.txtCellFormat
+            });
+
             me.pmiCondFormat = new Common.UI.MenuItem({
                 caption     : me.txtCondFormat
             });
@@ -847,7 +859,7 @@ define([
                     me.pmiDeleteCells,
                     me.pmiDeleteTable,
                     me.pmiClear,
-                    {caption: '--'},
+                    me.pmiCellSeparator,
                     me.pmiSparklines,
                     me.pmiSortCells,
                     me.pmiFilterCells,
@@ -876,6 +888,7 @@ define([
                     me.pmiAddCommentSeparator,
                     me.pmiAddComment,
                     me.pmiCellMenuSeparator,
+                    me.pmiCellFormat,
                     me.pmiNumFormat,
                     me.pmiCondFormat,
                     me.pmiEntriesList,
@@ -1142,6 +1155,7 @@ define([
             var menuSaveAsPictureSeparator = new Common.UI.MenuItem({ caption: '--'});
 
             me.menuImgEditPoints = new Common.UI.MenuItem({
+                iconCls: 'menu__icon btn-edit-points',
                 caption: me.textEditPoints
             });
 
@@ -1909,7 +1923,8 @@ define([
         textLinearTrend: 'Linear trend',
         textGrowthTrend: 'Growth trend',
         textFlashFill: 'Flash fill',
-        textSeries: 'Series'
+        textSeries: 'Series',
+        txtCellFormat: 'Format cells'
 
     }, SSE.Views.DocumentHolder || {}));
 });

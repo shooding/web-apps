@@ -32,8 +32,7 @@
 /**
  *    LeftMenu.js
  *
- *    Created by Maxim Kadushkin on 13 February 2014
- *    Copyright (c) 2018 Ascensio System SIA. All rights reserved.
+ *    Created on 13 February 2014
  *
  */
 
@@ -87,7 +86,11 @@ define([
                 enableToggle: true,
                 toggleGroup: 'leftMenuGroup'
             });
-            this.btnSearchBar.on('click',       this.onBtnMenuClick.bind(this));
+            this.btnSearchBar.on('click', _.bind(function () {
+                this.onBtnMenuClick(this.btnSearchBar);
+                if (this.btnSearchBar.pressed)
+                    this.fireEvent('search:aftershow');
+            }, this));
 
             this.btnAbout = new Common.UI.Button({
                 action: 'about',
@@ -205,7 +208,6 @@ define([
             this.supressEvents = false;
 
             this.onCoauthOptions();
-            btn.pressed && btn.options.action == 'advancedsearch' && this.fireEvent('search:aftershow', this);
             Common.NotificationCenter.trigger('layout:changed', 'leftmenu');
         },
 
@@ -320,7 +322,7 @@ define([
                     this.panelThumbnails['hide']();
                     this.btnThumbnails.toggle(false, true);
                 }
-                this.togglePluginButtons(false);
+                this.toggleActivePluginButton(false);
             }
         },
 
@@ -380,7 +382,7 @@ define([
                         this.btnSearchBar.toggle(true);
                         this.onBtnMenuClick(this.btnSearchBar);
                         this.panelSearch.focus();
-                        !suspendAfter && this.fireEvent('search:aftershow', this);
+                        !suspendAfter && this.fireEvent('search:aftershow');
                     }
                 }
                 /** coauthoring end **/

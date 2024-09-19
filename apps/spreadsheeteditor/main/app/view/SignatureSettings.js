@@ -32,8 +32,7 @@
 /**
  *  SignatureSettings.js
  *
- *  Created by Julia Radzhabova on 5/24/17
- *  Copyright (c) 2018 Ascensio System SIA. All rights reserved.
+ *  Created on 5/24/17
  *
  */
 
@@ -360,7 +359,7 @@ define([
                     text    : tipText,
                     showLink: showLink,
                     textLink: this.txtContinueEditing,
-                    placement: 'left-bottom'
+                    placement: Common.UI.isRTL() ? 'right-bottom' : 'left-bottom'
                 });
                 tip.on({
                     'dontshowclick': function() {

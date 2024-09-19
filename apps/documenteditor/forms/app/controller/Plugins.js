@@ -80,6 +80,8 @@ define([
                     {
                         me.configPlugins.plugins = false;
                     });
+                if (this.configPlugins.config.options)
+                    this.api.setPluginsOptions(this.configPlugins.config.options);
             } else
                 this.configPlugins.plugins = false;
 
@@ -281,7 +283,7 @@ define([
                     var variationsArr = [],
                         pluginVisible = false;
                     item.variations.forEach(function(itemVar){
-                        var isSystem = (true === itemVar.isSystem) || (Asc.PluginType.System === itemVar.type);
+                        var isSystem = (true === itemVar.isSystem) || (Asc.PluginType.System === Asc.PluginType.getType(itemVar.type));
                         var visible = (isEdit || itemVar.isViewer && (itemVar.isDisplayedInViewer!==false)) && _.contains(itemVar.EditorsSupport, editor) && !isSystem;
                         if ( visible ) pluginVisible = true;
 

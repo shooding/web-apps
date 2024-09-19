@@ -34,8 +34,7 @@
  *
  *  Statusbar controller
  *
- *  Created by Maxim Kadushkin on 8 April 2014
- *  Copyright (c) 2018 Ascensio System SIA. All rights reserved.
+ *  Created on 8 April 2014
  *
  */
 
@@ -61,12 +60,14 @@ define([
                     'langchanged': this.onLangMenu
                 },
                 'ViewTab': {
-                    'statusbar:hide': _.bind(me.onChangeCompactView, me)
+                    'statusbar:hide': _.bind(me.onChangeCompactView, me),
+                    'viewmode:change': _.bind(me.onChangeViewMode, me)
                 }
             });
             this._state = {
                 zoom_type: undefined,
-                zoom_percent: undefined
+                zoom_percent: undefined,
+                slideMasterMode: false
             };
             this._isZoomRecord = (Common.localStorage.getItem("pe-settings-zoom") != -3);
         },
@@ -150,7 +151,8 @@ define([
         },
 
         onPreview: function(slidenum, presenter) {
-            Common.NotificationCenter.trigger('preview:start', _.isNumber(slidenum) ? slidenum : 0, presenter);
+            var slideNum = this._state.slideMasterMode ? 0 : (_.isNumber(slidenum) ? slidenum : 0);
+            Common.NotificationCenter.trigger('preview:start', slideNum, presenter);
         },
 
         onPreviewBtnClick: function(btn, e) {
@@ -263,6 +265,12 @@ define([
         hideDisconnectTip: function() {
             this.disconnectTip && this.disconnectTip.hide();
             this.disconnectTip = null;
+        },
+
+        onChangeViewMode: function (mode) {
+             var isSlideMaster = mode === 'master';
+             this._state.slideMasterMode = isSlideMaster;
+             this.statusbar.showSlideMasterStatus(isSlideMaster);
         },
 
         zoomText        : 'Zoom {0}%',

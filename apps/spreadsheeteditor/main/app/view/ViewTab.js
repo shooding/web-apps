@@ -32,8 +32,7 @@
 /**
  *  ViewTab.js
  *
- *  Created by Julia Radzhabova on 08.07.2020
- *  Copyright (c) 2020 Ascensio System SIA. All rights reserved.
+ *  Created on 08.07.2020
  *
  */
 
@@ -191,7 +190,7 @@ define([
                 if ( me.appConfig.canFeatureViews && me.appConfig.isEdit ) {
                     this.btnSheetView = new Common.UI.Button({
                         cls: 'btn-toolbar x-huge icon-top',
-                        iconCls: 'toolbar__icon btn-sheet-view',
+                        iconCls: 'toolbar__icon btn-big-sheet-view',
                         caption: me.capBtnSheetView,
                         lock        : [_set.lostConnect, _set.coAuth, _set.editCell],
                         menu: true,

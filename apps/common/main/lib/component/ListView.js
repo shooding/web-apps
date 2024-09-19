@@ -32,8 +32,7 @@
 /**
  *  ListView.js
  *
- *  Created by Julia Radzhabova on 2/27/14
- *  Copyright (c) 2018 Ascensio System SIA. All rights reserved.
+ *  Created on 2/27/14
  *
  */
 
@@ -298,7 +297,7 @@ define([
                 var div_top = div.position().top,
                     div_height = div.outerHeight(),
                     div_first = this.dataViewItems[0].el,
-                    div_first_top = div_first ? div_first.offsetTop : 0,
+                    div_first_top = div_first ? Common.Utils.getOffsetTop(div_first) : 0,
                     newpos;
 
                 if (force || div_top<div_first_top)

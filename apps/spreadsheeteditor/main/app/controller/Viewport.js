@@ -34,8 +34,7 @@
  *
  *    Controller for the viewport
  *
- *    Created by Maxim Kadushkin on 24 March 2014
- *    Copyright (c) 2018 Ascensio System SIA. All rights reserved.
+ *    Created on 24 March 2014
  *
  */
 
@@ -70,7 +69,7 @@ define([
                 'FileMenu': {
                     'menu:hide': me.onFileMenu.bind(me, 'hide'),
                     'menu:show': me.onFileMenu.bind(me, 'show'),
-                    'settings:apply': me.applySettings.bind(me)
+                    //'settings:apply': me.applySettings.bind(me)
                 },
                 'Statusbar': {
                     'view:compact': function (statusbar, state) {
@@ -83,34 +82,26 @@ define([
                         if (!config.isEditDiagram && !config.isEditMailMerge && !config.isEditOle)
                             toolbar.setExtra('right', me.header.getPanel('right', config));
 
-                        if (!config.isEdit || config.customization && !!config.customization.compactHeader)
+                        if (!config.twoLevelHeader || config.compactHeader)
                             toolbar.setExtra('left', me.header.getPanel('left', config));
 
-                        if ( me.appConfig && me.appConfig.isEdit && !(config.customization && config.customization.compactHeader) && toolbar.btnCollabChanges )
+                        if ( me.appConfig && me.appConfig.isEdit && !config.compactHeader && toolbar.btnCollabChanges )
                             toolbar.btnCollabChanges = me.header.btnSave;
 
-                        var value = Common.localStorage.getBool("sse-settings-quick-print-button", true);
+                        /*var value = Common.localStorage.getBool("sse-settings-quick-print-button", true);
                         Common.Utils.InternalSettings.set("sse-settings-quick-print-button", value);
                         if (me.header && me.header.btnPrintQuick)
-                            me.header.btnPrintQuick[value ? 'show' : 'hide']();
+                            me.header.btnPrintQuick[value ? 'show' : 'hide']();*/
                     },
                     'view:compact'  : function (toolbar, state) {
                         me.viewport.vlayout.getItem('toolbar').height = state ?
                             Common.Utils.InternalSettings.get('toolbar-height-compact') : Common.Utils.InternalSettings.get('toolbar-height-normal');
                     },
                     'undo:disabled' : function (state) {
-                        if ( me.header.btnUndo ) {
-                            if ( me.header.btnUndo.keepState )
-                                me.header.btnUndo.keepState.disabled = state;
-                            else me.header.btnUndo.setDisabled(state);
-                        }
+                        me.header.lockHeaderBtns( 'undo', state, Common.enumLock.undoLock );
                     },
                     'redo:disabled' : function (state) {
-                        if ( me.header.btnRedo ) {
-                            if ( me.header.btnRedo.keepState )
-                                me.header.btnRedo.keepState.disabled = state;
-                            else me.header.btnRedo.setDisabled(state);
-                        }
+                        me.header.lockHeaderBtns( 'redo', state, Common.enumLock.redoLock );
                     },
                     'print:disabled' : function (state) {
                         if ( me.header.btnPrint )
@@ -159,7 +150,7 @@ define([
                 me.viewport.vlayout.getItem('toolbar').height = 41;
             }
 
-            if ( config.isEdit && !config.isEditDiagram && !config.isEditMailMerge && !config.isEditOle && !(config.customization && config.customization.compactHeader)) {
+            if ( config.twoLevelHeader && !config.isEditDiagram && !config.isEditMailMerge && !config.isEditOle && !config.compactHeader) {
                 var $title = me.viewport.vlayout.getItem('title').el;
                 $title.html(me.header.getPanel('title', config)).show();
                 $title.find('.extra').html(me.header.getPanel('left', config));
@@ -286,17 +277,17 @@ define([
             var me = this;
             var _need_disable =  opts == 'show';
 
-            me.header.lockHeaderBtns( 'undo', _need_disable );
-            me.header.lockHeaderBtns( 'redo', _need_disable );
+            me.header.lockHeaderBtns( 'undo', _need_disable, Common.enumLock.fileMenuOpened );
+            me.header.lockHeaderBtns( 'redo', _need_disable, Common.enumLock.fileMenuOpened );
             me.header.lockHeaderBtns( 'users', _need_disable );
         },
 
-        applySettings: function () {
+        /*applySettings: function () {
             var value = Common.localStorage.getBool("sse-settings-quick-print-button", true);
             Common.Utils.InternalSettings.set("sse-settings-quick-print-button", value);
             if (this.header && this.header.btnPrintQuick)
                 this.header.btnPrintQuick[value ? 'show' : 'hide']();
-        },
+        },*/
 
         onApiCoAuthoringDisconnect: function(enableDownload) {
             if (this.header) {

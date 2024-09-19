@@ -32,8 +32,7 @@
 /**
  *  app.js
  *
- *  Created by Julia Radzhabova on 04/27/23
- *  Copyright (c) 2013 Ascensio System SIA. All rights reserved.
+ *  Created on 04/27/23
  *
  */
 
@@ -145,11 +144,13 @@ require([
             'DocumentHolder',
             'Toolbar',
             'Statusbar',
+            'RightMenu',
             'Navigation',
             'PageThumbnails',
             'LeftMenu',
             'Main',
             'ViewTab',
+            'InsTab',
             'Search',
             'Print',
             'Common.Controllers.Fonts',
@@ -157,6 +158,8 @@ require([
             'Common.Controllers.Comments',
             'Common.Controllers.Draw',
             'Common.Controllers.Plugins',
+            // 'Common.Controllers.ExternalDiagramEditor',
+            // 'Common.Controllers.ExternalOleEditor',
             'Common.Controllers.Protection'
         ]
     });
@@ -172,11 +175,13 @@ require([
                 'pdfeditor/main/app/controller/DocumentHolder',
                 'pdfeditor/main/app/controller/Toolbar',
                 'pdfeditor/main/app/controller/Statusbar',
+                'pdfeditor/main/app/controller/RightMenu',
                 'pdfeditor/main/app/controller/Navigation',
                 'pdfeditor/main/app/controller/PageThumbnails',
                 'pdfeditor/main/app/controller/LeftMenu',
                 'pdfeditor/main/app/controller/Main',
                 'pdfeditor/main/app/controller/ViewTab',
+                'pdfeditor/main/app/controller/InsTab',
                 'pdfeditor/main/app/controller/Search',
                 'pdfeditor/main/app/controller/Print',
                 'pdfeditor/main/app/view/FileMenuPanels',
@@ -186,6 +191,8 @@ require([
                 'common/main/lib/controller/Chat',
                 /** coauthoring end **/
                 'common/main/lib/controller/Plugins',
+                // 'common/main/lib/controller/ExternalDiagramEditor',
+                // 'common/main/lib/controller/ExternalOleEditor',
                 'common/main/lib/controller/Draw',
                 'common/main/lib/controller/Protection'
             ], function() {

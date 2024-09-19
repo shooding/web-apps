@@ -32,8 +32,7 @@
 /**
  *  ChartSettings.js
  *
- *  Created by Julia Radzhabova on 2/07/14
- *  Copyright (c) 2018 Ascensio System SIA. All rights reserved.
+ *  Created on 2/07/14
  *
  */
 
@@ -280,6 +279,7 @@ define([
                 dataHintDirection: 'bottom',
                 dataHintOffset: 'big',
                 delayRenderTips: true,
+                fillOnChangeVisibility: true,
                 itemTemplate: _.template([
                     '<div class="item-icon-box" id="<%= id %>">',
                         '<img src="data:image/gif;base64,R0lGODlhAQABAID/AMDAwAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" ' +
@@ -738,7 +738,8 @@ define([
                     dataHint: '1',
                     dataHintDirection: 'bottom',
                     dataHintOffset: 'big',
-                    delayRenderTips: true
+                    delayRenderTips: true,
+                    fillOnChangeVisibility: true
                 });
                 this.cmbChartStyle.render($('#chart-combo-style'));
                 this.cmbChartStyle.openButton.menu.cmpEl.css({

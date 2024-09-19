@@ -33,8 +33,7 @@
 /**
  *  ViewTab.js
  *
- *  Created by Julia Svinareva on 22.02.2022
- *  Copyright (c) 2022 Ascensio System SIA. All rights reserved.
+ *  Created on 22.02.2022
  *
  */
 
@@ -282,7 +281,7 @@ define([
             options.asc_setLookIn(this._state.lookInFormulas ? Asc.c_oAscFindLookIn.Formulas : Asc.c_oAscFindLookIn.Value);
             options.asc_setNeedRecalc(isNeedRecalc);
             if (this._state.isContentChanged) {
-                options.asc_setLastSearchElem(this._state.lastSelectedItem);
+                options.asc_setLastSearchElem(this._state.lastSelectedItem ? this._state.lastSelectedItem : options.asc_getLastSearchElem(true));
                 this.view.disableReplaceButtons(false);
                 this._state.isContentChanged = false;
                 if (!this.view.$el.is(':visible')) {

@@ -33,8 +33,7 @@
 /**
  *  DocProtection.js
  *
- *  Created by Julia Radzhabova on 21.09.2022
- *  Copyright (c) 2022 Ascensio System SIA. All rights reserved.
+ *  Created on 21.09.2022
  *
  */
 define([
@@ -78,7 +77,7 @@ define([
                     iconCls: 'toolbar__icon btn-restrict-editing',
                     enableToggle: true,
                     caption: this.txtProtectDoc,
-                    lock        : [_set.lostConnect, _set.coAuth, _set.previewReviewMode, _set.viewFormMode, _set.protectLock],
+                    lock        : [_set.lostConnect, _set.coAuth, _set.previewReviewMode, _set.viewFormMode, _set.protectLock, _set.viewMode],
                     dataHint    : '1',
                     dataHintDirection: 'bottom',
                     dataHintOffset: 'small'

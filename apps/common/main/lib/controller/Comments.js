@@ -32,8 +32,7 @@
 /**
  *  Comments.js
  *
- *  Created by Alexey Musinov on 16.01.14
- *  Copyright (c) 2018 Ascensio System SIA. All rights reserved.
+ *  Created on 16.01.14
  *
  */
 
@@ -851,7 +850,7 @@ define([
                 comment.set('initials', Common.Utils.getUserInitials(AscCommon.UserInfoParser.getParsedName(data.asc_getUserName())));
                 comment.set('parsedName', AscCommon.UserInfoParser.getParsedName(data.asc_getUserName()));
                 comment.set('parsedGroups', AscCommon.UserInfoParser.getParsedGroups(data.asc_getUserName()));
-                comment.set('usercolor', (user) ? user.get('color') : null);
+                comment.set('usercolor', (user) ? user.get('color') : Common.UI.ExternalUsers.getColor(userid || data.asc_getUserName()));
                 comment.set('avatar',   avatar);
                 comment.set('resolved', data.asc_getSolved());
                 comment.set('quote',    data.asc_getQuoteText());
@@ -890,7 +889,7 @@ define([
                         username            : data.asc_getReply(i).asc_getUserName(),
                         initials            : Common.Utils.getUserInitials(AscCommon.UserInfoParser.getParsedName(data.asc_getReply(i).asc_getUserName())),
                         parsedName          : AscCommon.UserInfoParser.getParsedName(data.asc_getReply(i).asc_getUserName()),
-                        usercolor           : (user) ? user.get('color') : null,
+                        usercolor           : (user) ? user.get('color') : Common.UI.ExternalUsers.getColor(userid || data.asc_getReply(i).asc_getUserName()),
                         avatar              : avatar,
                         date                : t.dateToLocaleTimeString(dateReply),
                         reply               : data.asc_getReply(i).asc_getText(),
@@ -1300,7 +1299,7 @@ define([
             var users = this.userCollection,
                 hasGroup = false,
                 updateCommentData = function(comment, user, isNotReply) {
-                    var color = (user) ? user.get('color') : null,
+                    var color = (user) ? user.get('color') : Common.UI.ExternalUsers.getColor(comment.get('userid')),
                         needrender = false;
                     if (color !== comment.get('usercolor')) {
                         needrender = true;
@@ -1395,7 +1394,7 @@ define([
                 initials            : Common.Utils.getUserInitials(AscCommon.UserInfoParser.getParsedName(data.asc_getUserName())),
                 parsedName          : AscCommon.UserInfoParser.getParsedName(data.asc_getUserName()),
                 parsedGroups        : AscCommon.UserInfoParser.getParsedGroups(data.asc_getUserName()),
-                usercolor           : (user) ? user.get('color') : null,
+                usercolor           : (user) ? user.get('color') : Common.UI.ExternalUsers.getColor(userid || data.asc_getUserName()),
                 avatar              : avatar,
                 date                : this.dateToLocaleTimeString(date),
                 quote               : data.asc_getQuoteText(),
@@ -1456,7 +1455,7 @@ define([
                         username            : data.asc_getReply(i).asc_getUserName(),
                         initials            : Common.Utils.getUserInitials(AscCommon.UserInfoParser.getParsedName(data.asc_getReply(i).asc_getUserName())),
                         parsedName          : AscCommon.UserInfoParser.getParsedName(data.asc_getReply(i).asc_getUserName()),
-                        usercolor           : (user) ? user.get('color') : null,
+                        usercolor           : (user) ? user.get('color') : Common.UI.ExternalUsers.getColor(userid || data.asc_getReply(i).asc_getUserName()),
                         avatar              : avatar,
                         date                : this.dateToLocaleTimeString(date),
                         reply               : data.asc_getReply(i).asc_getText(),
@@ -1501,7 +1500,7 @@ define([
                         avatar: Common.UI.ExternalUsers.getImage(this.currentUserId),
                         initials: Common.Utils.getUserInitials(AscCommon.UserInfoParser.getParsedName(AscCommon.UserInfoParser.getCurrentName())),
                         parsedName: AscCommon.UserInfoParser.getParsedName(AscCommon.UserInfoParser.getCurrentName()),
-                        usercolor: (user) ? user.get('color') : null,
+                        usercolor: (user) ? user.get('color') : Common.UI.ExternalUsers.getColor(this.currentUserId),
                         editTextInPopover: true,
                         showReplyInPopover: false,
                         hideAddReply: true,
@@ -1722,6 +1721,7 @@ define([
 
             var lang = (this.mode ? this.mode.lang || 'en' : 'en').replace('_', '-').toLowerCase();
             try {
+                if ( lang == 'ar-SA'.toLowerCase() ) lang = lang + '-u-nu-latn-ca-gregory';    // TODO: check Intl.Locale to support suitable options
                 return date.toLocaleString(lang, {dateStyle: 'short', timeStyle: 'short'});
             } catch (e) {
                 lang = 'en';

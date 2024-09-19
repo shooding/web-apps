@@ -33,8 +33,7 @@
  *
  *  RolesManagerDlg.js
  *
- *  Created by Julia.Radzhabova on 12.04.22
- *  Copyright (c) 2022 Ascensio System SIA. All rights reserved.
+ *  Created on 12.04.22
  *
  */
 
@@ -52,6 +51,7 @@ define([  'text!documenteditor/main/app/template/RolesManagerDlg.template',
         options: {
             alias: 'RolesManagerDlg',
             contentWidth: 500,
+            separator: false,
             buttons: ['close']
         },
 
@@ -138,7 +138,7 @@ define([  'text!documenteditor/main/app/template/RolesManagerDlg.template',
         },
 
         getFocusedComponents: function() {
-            return [ this.btnUp, this.btnDown, this.rolesList, this.btnNewRole, this.btnEditRole, this.btnDeleteRole ].concat(this.getFooterButtons());
+            return [ this.btnUp, this.btnDown, this.btnNewRole, this.btnEditRole, this.btnDeleteRole, this.rolesList].concat(this.getFooterButtons());
         },
 
         getDefaultFocusableComponent: function () {

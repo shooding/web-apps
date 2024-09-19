@@ -32,8 +32,7 @@
 /**
  *  SideMenu.js
  *
- *  Created by Julia Svinareva on 25/10/2023.
- *  Copyright (c) 2023 Ascensio System SIA. All rights reserved.
+ *  Created on 25/10/2023.
  *
  */
 
@@ -241,7 +240,7 @@ define([
                     index = arr[1];
                 btn.cmpEl.parent().remove();
                 this.buttons.splice(index, 1);
-                this.close();
+                this.close && this.close();
 
                 this.setMoreButton();
             },
@@ -257,7 +256,7 @@ define([
                 return pressed;
             },
 
-            togglePluginButtons: function (toggle) {
+            toggleActivePluginButton: function (toggle) {
                 for (var i=0; i<this.buttons.length; i++) {
                     if (this.buttons[i].options.type === 'plugin' && this.buttons[i].pressed) {
                         this.buttons[i].toggle(toggle, true);
@@ -279,7 +278,7 @@ define([
                         menuItem.cmpEl.find("img").attr("src", src);
                     }
                 });
-            },
+            }
         }
     }()));
 });

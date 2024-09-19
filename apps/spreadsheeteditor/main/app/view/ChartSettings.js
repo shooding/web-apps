@@ -32,8 +32,7 @@
 /**
  *  ChartSettings.js
  *
- *  Created by Julia Radzhabova on 3/28/14
- *  Copyright (c) 2018 Ascensio System SIA. All rights reserved.
+ *  Created on 3/28/14
  *
  */
 
@@ -1294,7 +1293,8 @@ define([
                     dataHint: '1',
                     dataHintDirection: 'bottom',
                     dataHintOffset: 'big',
-                    delayRenderTips: true
+                    delayRenderTips: true,
+                    fillOnChangeVisibility: true
                 });
                 this.cmbChartStyle.render($('#chart-combo-style'));
                 this.cmbChartStyle.openButton.menu.cmpEl.css({
@@ -1338,7 +1338,8 @@ define([
                     menuMaxHeight: 272,
                     enableKeyEvents: true,
                     cls: 'combo-spark-style',
-                    delayRenderTips: true
+                    delayRenderTips: true,
+                    fillOnChangeVisibility: true
                 });
                 this.cmbSparkStyle.render($('#spark-combo-style'));
                 this.cmbSparkStyle.openButton.menu.cmpEl.css({

@@ -32,8 +32,7 @@
 /**
  *  DropcapSettingsAdvanced.js
  *
- *  Created by Alexander Yuzhin on 2/24/14
- *  Copyright (c) 2018 Ascensio System SIA. All rights reserved.
+ *  Created on 2/24/14
  *
  */
 
@@ -283,7 +282,7 @@ define([
             this.btnInText = new Common.UI.Button({
                 parentEl: $('#drop-advanced-button-intext'),
                 cls         : 'btn huge-1 btn-options',
-                iconCls     : 'icon-advanced-wrap options__icon options__icon-huge btn-drop-text',
+                iconCls     : 'icon-advanced-wrap options__icon options__icon-huge btn-drop-text icon-rtl',
                 enableToggle: true,
                 toggleGroup : 'dropAdvGroup',
                 allowDepress: false,
