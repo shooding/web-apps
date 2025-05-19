@@ -761,24 +761,24 @@ define([
         },
 
         onServerVersion: function(buildVersion) {
-            if (this.changeServerVersion) return true;
+            // if (this.changeServerVersion) return true;
 
-            if (DocsAPI.DocEditor.version() !== buildVersion && !window.compareVersions) {
-                this.changeServerVersion = true;
-                Common.UI.warning({
-                    title: this.titleServerVersion,
-                    msg: this.errorServerVersion,
-                    callback: function() {
-                        _.defer(function() {
-                            Common.Gateway.updateVersion();
-                        })
-                    }
-                });
-                if (this._isDocReady) { // receive after refresh file
-                    Common.NotificationCenter.trigger('api:disconnect');
-                }
-                return true;
-            }
+            // if (DocsAPI.DocEditor.version() !== buildVersion && !window.compareVersions) {
+            //     this.changeServerVersion = true;
+            //     Common.UI.warning({
+            //         title: this.titleServerVersion,
+            //         msg: this.errorServerVersion,
+            //         callback: function() {
+            //             _.defer(function() {
+            //                 Common.Gateway.updateVersion();
+            //             })
+            //         }
+            //     });
+            //     if (this._isDocReady) { // receive after refresh file
+            //         Common.NotificationCenter.trigger('api:disconnect');
+            //     }
+            //     return true;
+            // }
             return false;
         },
 
