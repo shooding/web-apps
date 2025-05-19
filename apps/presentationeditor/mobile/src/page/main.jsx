@@ -161,21 +161,21 @@ class MainPage extends Component {
             customLogoImage = '',
             customLogoUrl = '';
 
-        if(!appOptions.isDisconnected && appOptions.isDocReady) {
-            const { logo } = customization;
-            isBranding = appOptions.canBranding || appOptions.canBrandingExt;
+        // if(!appOptions.isDisconnected && appOptions.isDocReady) {
+        //     const { logo } = customization;
+        //     isBranding = appOptions.canBranding || appOptions.canBrandingExt;
             
-            if(logo && isBranding) {
-                isHideLogo = logo.visible === false;
+        //     if(logo && isBranding) {
+        //         isHideLogo = logo.visible === false;
 
-                if(logo.image || logo.imageDark || logo.imageLight) {
-                    customLogoImage = colorTheme.type === 'dark' ? logo.imageDark ?? logo.image ?? logo.imageLight : logo.imageLight ?? logo.image ?? logo.imageDark;
-                    customLogoUrl = logo.url;
-                }
-            } else {
-                isHideLogo = false;
-            }
-        }
+        //         if(logo.image || logo.imageDark || logo.imageLight) {
+        //             customLogoImage = colorTheme.type === 'dark' ? logo.imageDark ?? logo.image ?? logo.imageLight : logo.imageLight ?? logo.image ?? logo.imageDark;
+        //             customLogoUrl = logo.url;
+        //         }
+        //     } else {
+        //         isHideLogo = false;
+        //     }
+        // }
 
         return (
             <Themes>
