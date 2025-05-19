@@ -399,7 +399,7 @@ VE.ApplicationController = new(function(){
 
     function onPrint() {
         if (permissions.print!==false)
-            api.asc_Print(new Asc.asc_CDownloadOptions(null, $.browser.chrome || $.browser.safari || $.browser.opera || $.browser.mozilla && $.browser.versionNumber>86));
+            api.asc_Print(new Asc.asc_CDownloadOptions(null, $.browser.chrome || $.browser.safari || $.browser.webkit || $.browser.opera || $.browser.mozilla && $.browser.versionNumber>86));
     }
 
     function onPrintUrl(url) {
@@ -504,7 +504,7 @@ VE.ApplicationController = new(function(){
 
         VE.ApplicationView.tools.get('#idt-print')
             .on('click', function(){
-                api.asc_Print(new Asc.asc_CDownloadOptions(null, $.browser.chrome || $.browser.safari || $.browser.opera || $.browser.mozilla && $.browser.versionNumber>86));
+                api.asc_Print(new Asc.asc_CDownloadOptions(null, $.browser.chrome || $.browser.safari || $.browser.webkit || $.browser.opera || $.browser.mozilla && $.browser.versionNumber>86));
                 Common.Analytics.trackEvent('Print');
             });
 
